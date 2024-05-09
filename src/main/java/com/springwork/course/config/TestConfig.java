@@ -2,10 +2,12 @@ package com.springwork.course.config;
 
 import com.springwork.course.entities.Category;
 import com.springwork.course.entities.Order;
+import com.springwork.course.entities.Product;
 import com.springwork.course.entities.User;
 import com.springwork.course.entities.enums.OrderStatus;
 import com.springwork.course.repositories.CategoryRepository;
 import com.springwork.course.repositories.OrderRepository;
+import com.springwork.course.repositories.ProductRepository;
 import com.springwork.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -36,7 +41,14 @@ public class TestConfig implements CommandLineRunner {
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
 
+        Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
         User u1 = new User(null, "Wallace", "wall@gmail.com", "81970707070", "joji");
         User u2 = new User(null, "Pezao", "pezao@gmail.com", "81960606060", "twice");

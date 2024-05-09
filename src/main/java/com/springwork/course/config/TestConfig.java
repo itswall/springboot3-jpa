@@ -1,8 +1,10 @@
 package com.springwork.course.config;
 
+import com.springwork.course.entities.Category;
 import com.springwork.course.entities.Order;
 import com.springwork.course.entities.User;
 import com.springwork.course.entities.enums.OrderStatus;
+import com.springwork.course.repositories.CategoryRepository;
 import com.springwork.course.repositories.OrderRepository;
 import com.springwork.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ import java.util.Arrays;
 public class TestConfig implements CommandLineRunner {
 
     @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -26,6 +31,12 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
         User u1 = new User(null, "Wallace", "wall@gmail.com", "81970707070", "joji");
         User u2 = new User(null, "Pezao", "pezao@gmail.com", "81960606060", "twice");
@@ -36,5 +47,6 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
     }
 }
